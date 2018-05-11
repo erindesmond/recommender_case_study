@@ -7,12 +7,12 @@ def grid_search(surprise_model):
 
     if type(surprise_model()) == type(SVDpp()):
 
-        param_grid = {'n_factors':[20] , 'n_epochs':[20], 'lr_all':[0.005, 0.007, 0.05, 0.07, 0.5, 0.7, 1.0], 'reg_all':[0.02, 0.05, 0.2, 0.5]}
+        param_grid = {'n_factors':[20] , 'n_epochs':[20], 'lr_all':[0.005, 0.05, 0.5, 1.0], 'reg_all':[0.02, 0.05, 0.2, 0.5]}
         gs = GridSearchCV(surprise_model, param_grid, measures=['rmse', 'mae'], cv=3)
 
     elif type(surprise_model()) == type(SVD()):
 
-        param_grid = {'n_epochs':[20], 'lr_all':[0.005, 0.007, 0.05, 0.07, 0.5, 0.7, 1.0], 'reg_all':[0.02, 0.05, 0.2, 0.5]}
+        param_grid = {'n_epochs':[20], 'lr_all':[0.005, 0.05, 0.5, 1.0], 'reg_all':[0.02, 0.05, 0.2, 0.5]}
         gs = GridSearchCV(surprise_model, param_grid, measures=['rmse', 'mae'], cv=3)
 
     elif type(surprise_model()) == type(NMF()):
@@ -24,10 +24,10 @@ def grid_search(surprise_model):
         param_grid = {'bsl_options': {'method': ['als', 'sgd'], 'reg': [1, 2], 'learning_rate': [0.005, 0.05, 0.5, 1.0]}}
         gs = GridSearchCV(surprise_model, param_grid, measures=['rmse', 'mae'], cv=3)
 
+    else:
+        print('Model not found')
+
     return gs
-
-
-
 
 
 
