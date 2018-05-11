@@ -1,6 +1,7 @@
 from surprise import Dataset
 from surprise.model_selection import GridSearchCV
 from surprise.prediction_algorithms.matrix_factorization import SVDpp, NMF, SVD
+from surprise import BaselineOnly
 
 
 def grid_search(surprise_model):

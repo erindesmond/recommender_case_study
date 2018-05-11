@@ -11,15 +11,15 @@ from gridsearch import grid_search
 def rmse_change(orig,new):
     return (new-orig)/orig * 100
 
-def best_preditions_model(data):
+def best_preditions_model(model_list,data):
     # trainset, testset = train_test_split(data, test_size=.2)
-    models = (SVD, SVDpp, NMF, BaselineOnly)
+    models = model_list
     best_rmse = 10000
     for model in models:
         gridsearch = grid_search(model)
-
+        print(gridsearch.param_grid)
         gridsearch.fit(data)
-        print(gridsearch.best_score['rmse'])
+
         if gridsearch.best_score['rmse'] < best_rmse:
             best_model = gridsearch
             best_rmse = gridsearch.best_score['rmse']
