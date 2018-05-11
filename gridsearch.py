@@ -3,19 +3,6 @@ from surprise.model_selection import GridSearchCV
 from surprise.prediction_algorithms.matrix_factorization import SVDpp, NMF, SVD
 
 
-'''The SVD++ algorithm, an extension of SVD taking into account implicit ratings.
-
-The prediction r̂ ui
- is set as:
-
-r̂ ui=μ+bu+bi+qTi(pu+|Iu|−12∑j∈Iuyj)
-Where the yj
- terms are a new set of item factors that capture implicit ratings. Here, an implicit rating describes the fact that a user u
- rated an item j
-, regardless of the rating value.'''
-
-
-
 def grid_search(surprise_model):
 
     if type(surprise_model()) == type(SVDpp()):
@@ -46,15 +33,12 @@ def grid_search(surprise_model):
 
 if __name__ == '__main__':
 
-    # Use movielens-100K
+    # Use movielens-100K as test
     data = Dataset.load_builtin('ml-100k')
 
-    #SVD = SVD()
+
     test = grid_search(SVD)
 
-            # print('Best score for NMF: ', gs_nmf.best_score['rmse'])
-            # # combination of parameters that gave the best RMSE score
-            # print('Best parameters for NMF: ', gs_nmf.best_params['rmse'])
 
 
 
